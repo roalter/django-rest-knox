@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Changelog - Django-Rest-Knox</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Changelog";
+        var mkdocs_page_input_path = "changelog.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Django-Rest-Knox
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../views/">Views</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../urls/">URLs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../auth/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../settings/">Settings</a>
+                  </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Changelog</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Django-Rest-Knox</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Changelog</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/jazzband/django-rest-knox/edit/master/docs/changelog.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="420">4.2.0</h2>
+<ul>
+<li>compatibility with Python up to 3.10 and Django up to 4.0</li>
+<li>integration with github CI instead of travis</li>
+<li>Migration: "salt" field of model "AuthToken" is removed, WARNING: invalidates old tokens!</li>
+</ul>
+<h2 id="410">4.1.0</h2>
+<ul>
+<li>Expiry format now defaults to whatever is used Django REST framework</li>
+<li>The behavior can be overridden via EXPIRY_DATETIME_FORMAT setting</li>
+<li>Fully customizable expiry format via format_expiry_datetime</li>
+<li>Fully customizable response payload via get_post_response_data</li>
+</ul>
+<h2 id="401">4.0.1</h2>
+<ul>
+<li>Fix for tox config to build Django 2.2 on python 3.6</li>
+</ul>
+<h2 id="400">4.0.0</h2>
+<p><strong>BREAKING</strong> This is a major release version because it
+breaks the existing API.
+Changes have been made to the <code>create()</code> method on the <code>AuthToken</code> model. 
+It now returns the model instance and the raw <code>token</code> instead
+of just the <code>token</code> to allow the <code>expiry</code> field to be included in the
+success response.</p>
+<p>Model field of <code>AuthToken</code> has been renamed from <code>expires</code> to <code>expiry</code>
+to remain consistent across the code base. This patch requires you
+to run a migration.</p>
+<p>Depending on your usage you might have to adjust your code
+to fit these new changes.</p>
+<ul>
+<li><code>AuthToken</code> model field has been changed from <code>expires</code> to <code>expiry</code></li>
+<li>Successful login now always returns a <code>expiry</code> field for when the token expires</li>
+</ul>
+<h2 id="360">3.6.0</h2>
+<ul>
+<li>The user serializer for each <code>LoginView</code>is now dynamic</li>
+</ul>
+<h2 id="350">3.5.0</h2>
+<ul>
+<li>The context, token TTL and tokens per user settings in <code>LoginView</code> are now dynamic</li>
+</ul>
+<h2 id="340">3.4.0</h2>
+<p>Our release cycle was broken since 3.1.5, hence you can not find the previous releases on pypi. We now fixed the problem.</p>
+<ul>
+<li>Adds optional token limit</li>
+<li>#129, #128 fixed</li>
+<li>Changelog and Readme converted to markdown</li>
+<li>Auth header prefix is now configurable</li>
+<li>We ensure not to have flake8 errors in our code during our build</li>
+<li>MIN_REFRESH_INTERVAL is now a configurable setting</li>
+</ul>
+<h2 id="331">3.3.1</h2>
+<ul>
+<li>Ensure compatibility with Django 2.1 up to Python 3.7</li>
+</ul>
+<h2 id="330">3.3.0</h2>
+<ul>
+<li>
+<p><strong>Breaking changes</strong>: Successful authentication <strong>ONLY</strong> returns
+    <code>Token</code> object by default
+    now.<code>USER_SERIALIZER</code> must be overridden to return more
+    data.</p>
+</li>
+<li>
+<p>Introduce new setting <code>MIN_REFRESH_INTERVAL</code> to configure the time
+    interval (in seconds) to wait before a token is automatically refreshed.</p>
+</li>
+</ul>
+<h2 id="321">3.2.1</h2>
+<ul>
+<li>Fix !111: Avoid knox failing if settings are not overwritten</li>
+</ul>
+<h2 id="320">3.2.0</h2>
+<ul>
+<li>Introduce new setting AUTO_REFRESH for controlling if token expiry time should be extended automatically</li>
+</ul>
+<h2 id="315">3.1.5</h2>
+<ul>
+<li>Make AuthTokenAdmin more compatible with big user tables</li>
+<li>Extend docs regarding usage of Token Authentication as single authentication method.</li>
+</ul>
+<h2 id="314">3.1.4</h2>
+<ul>
+<li>Fix compatibility with django-rest-swagger (bad inheritance)</li>
+</ul>
+<h2 id="313">3.1.3</h2>
+<ul>
+<li>Avoid 500 error response for invalid-length token requests</li>
+</ul>
+<h2 id="312">3.1.2</h2>
+<ul>
+<li>restore compatibility with Python &lt;2.7.7</li>
+</ul>
+<h2 id="311">3.1.1</h2>
+<ul>
+<li>use hmac.compare_digest instead of == for comparing hashes for more security</li>
+</ul>
+<h2 id="310">3.1.0</h2>
+<ul>
+<li>drop Django 1.8 support as djangorestframework did so too in v.3.7.0</li>
+<li>build rest-knox on Django 1.11 and 2.0</li>
+</ul>
+<h2 id="303">3.0.3</h2>
+<ul>
+<li>drop using OpenSSL in favor of urandom</li>
+</ul>
+<h2 id="302">3.0.2</h2>
+<ul>
+<li>Add context to UserSerializer</li>
+<li>improve docs</li>
+</ul>
+<h2 id="301">3.0.1</h2>
+<ul>
+<li>improved docs and readme</li>
+<li>login response better supporting hyperlinked fields</li>
+</ul>
+<h2 id="300">3.0.0</h2>
+<p><strong>Please be aware: updating to this version requires applying a database migration. All clients will need to reauthenticate.</strong></p>
+<ul>
+<li>Big performance fix: Introduction of token_key field to avoid having to compare a login request's token against each and every token in the database (issue #21)</li>
+<li>increased test coverage</li>
+</ul>
+<h2 id="222">2.2.2</h2>
+<ul>
+<li>Bugfix: invalid token length does no longer trigger a server error</li>
+<li>Extending documentation</li>
+</ul>
+<h2 id="221">2.2.1</h2>
+<p><strong>Please be aware: updating to his version requires applying a database migration</strong></p>
+<ul>
+<li>Introducing token_key to avoid loop over all tokens on login-requests</li>
+<li>Signals are sent on login/logout</li>
+<li>Test for invalid token length</li>
+<li>
+<p>Cleanup in code and documentation</p>
+</li>
+<li>
+<p>Bugfix: invalid token length does no longer trigger a server error</p>
+</li>
+<li>Extending documentation</li>
+</ul>
+<h2 id="220">2.2.0</h2>
+<ul>
+<li>Change to support python 2.7</li>
+</ul>
+<h2 id="200">2.0.0</h2>
+<ul>
+<li>Hashing of tokens on the server introduced.</li>
+<li>Updating to this version will clean the AuthToken table. In real terms, this
+    means all users will be forced to log in again.</li>
+</ul>
+<h2 id="110">1.1.0</h2>
+<ul>
+<li><code>LoginView</code> changed to respect <code>DEFAULT_AUTHENTICATION_CLASSES</code></li>
+</ul>
+<h2 id="100">1.0.0</h2>
+<ul>
+<li>Initial release</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../settings/" class="btn btn-neutral float-left" title="Settings"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/jazzband/django-rest-knox" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../settings/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
